@@ -53,7 +53,7 @@ void loop(void) {
   changeMenu();
   readTemperature();
   changeRGBLed();
-  FAN();
+  runFAN();
 }
 void changeRGBLed(void){
   float change = (temperature + 40.0f) * 255.0f / (125.0f + 40.0f);
@@ -69,7 +69,7 @@ void readTemperature(void){
   temperature = (voltage-0.1f) * (125.0f+40.0f) / (1.75f-0.1f) - 40.0f;
 }
 
-void FAN(void){
+void runFAN(void){
 if(temperature>40)
 {
   analogWrite(pwm, 255);
