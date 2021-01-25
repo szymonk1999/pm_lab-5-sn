@@ -46,6 +46,7 @@ void setup(void){
   pinMode(LedBlue, OUTPUT);
   pinMode(pwm,OUTPUT);
   analogWrite(pwm,0);
+  Serial.begin(9600);
 }
 
 void loop(void) {
@@ -72,8 +73,14 @@ void readTemperature(void){
 void runFAN(void){
 if(temperature>40)
 {
-  analogWrite(pwm, 255);
+  float duty = map(temperature,40,127,10,255);
+  analogWrite(pwm, duty);
+  Serial.println(duty);
+
+  Serial.println(temperature);
+
 }
+  else analogWrite(pwm, 0);
 }
 
 void dispMenu(void){
